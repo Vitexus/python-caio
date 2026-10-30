@@ -1,0 +1,21 @@
+Source: caio
+Section: python
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               pybuild-plugin-pyproject,
+               python3-all-dev,
+               python3-setuptools,
+Standards-Version: 4.7.2
+Homepage: https://github.com/mosquito/caio
+Rules-Requires-Root: no
+Vcs-Browser: https://github.com/Vitexus/python-caio
+Vcs-Git: https://github.com/Vitexus/python-caio.git
+
+Package: python3-caio
+Architecture: any
+Depends: ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends},
+Description: Asynchronous file IO for Linux MacOS or Windows
+ This module includes Python bindings for Linux AIO API and
+ simple asyncio wrapper.

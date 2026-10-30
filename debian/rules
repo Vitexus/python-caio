@@ -1,0 +1,16 @@
+#! /usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export PYBUILD_NAME=caio
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+# trixie's trove-classifiers does not know these newer classifiers and
+# setuptools rejects the whole project metadata because of them.
+override_dh_auto_configure:
+	sed -i '/Python :: 3\.15"/d; /Free Threading :: 2 - Beta"/d' pyproject.toml
+	dh_auto_configure
+
+# Upstream tests need aiomisc-pytest (not packaged) and write access to system paths.
+override_dh_auto_test:
